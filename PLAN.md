@@ -1,8 +1,8 @@
-# Agenta: Multi-Agent Claude Orchestration CLI
+# Agenter: Multi-Agent Claude Orchestration CLI
 
 ## Vision
 
-Transform the prompt-engineering repository into "agenta" - a professional CLI tool that makes multi-agent AI development fast, safe, and delightful. What starts as scripts and configuration becomes a product that orchestrates multiple Claude instances working in parallel without context contamination.
+Transform the prompt-engineering repository into "agenter" - a professional CLI tool that makes multi-agent AI development fast, safe, and delightful. What starts as scripts and configuration becomes a product that orchestrates multiple Claude instances working in parallel without context contamination.
 
 ## Core Problem
 
@@ -22,7 +22,7 @@ When running multiple Claude Code instances, they share `.claude/` directories c
 - Variable number of agents (2-6)
 - Agent profiles/personalities
 - Project-specific configurations
-- `agenta.yaml` config files
+- `agenter.yaml` config files
 
 ### Phase 3: Advanced Features
 - Agent communication protocols
@@ -35,7 +35,7 @@ When running multiple Claude Code instances, they share `.claude/` directories c
 
 ### CLI Structure (using Cobra)
 ```
-agenta
+agenter
 ├── init          # Interactive first-time setup
 ├── check         # Validate prerequisites
 ├── setup <repo>  # Create worktrees for a repository
@@ -49,8 +49,8 @@ agenta
 
 ```bash
 # First-time setup
-$ agenta init
-Welcome to Agenta v0.1.0 - Multi-Agent Claude Orchestration
+$ agenter init
+Welcome to Agenter v0.1.0 - Multi-Agent Claude Orchestration
 
 Checking prerequisites...
 ✓ Claude Code installed (v1.95.1)
@@ -60,10 +60,10 @@ Checking prerequisites...
 Would you like to install our optimized CLAUDE.md configuration? [Y/n] y
 ✓ Configuration installed to ~/.claude/CLAUDE.md
 
-Setup complete! Next: run 'agenta setup <repository>' to configure a project.
+Setup complete! Next: run 'agenter setup <repository>' to configure a project.
 
 # Project setup
-$ agenta setup ~/git/myproject
+$ agenter setup ~/git/myproject
 Setting up myproject for multi-agent development...
 
 Creating agent worktrees:
@@ -72,13 +72,13 @@ Creating agent worktrees:
 ✓ Created myproject-jarvis (branch: jarvis-work)
 
 Ready! Launch agents with:
-  cd ~/git/myproject-forge && agenta launch forge
-  cd ~/git/myproject-axiom && agenta launch axiom
-  cd ~/git/myproject-jarvis && agenta launch jarvis
+  cd ~/git/myproject-forge && agenter launch forge
+  cd ~/git/myproject-axiom && agenter launch axiom
+  cd ~/git/myproject-jarvis && agenter launch jarvis
 
 # Daily use
 $ cd ~/git/myproject-axiom
-$ agenta launch axiom
+$ agenter launch axiom
 ✓ Directory verified: myproject-axiom
 ✓ Launching Claude as Axiom...
 [Claude Code starts with WHO_AM_I=axiom]
@@ -86,9 +86,9 @@ $ agenta launch axiom
 
 ### Configuration Storage
 
-Store project configurations in `~/.agenta/`:
+Store project configurations in `~/.agenter/`:
 ```
-~/.agenta/
+~/.agenter/
 ├── config.yaml         # Global settings
 └── projects/
     └── myproject.yaml  # Project-specific config
@@ -105,13 +105,13 @@ Follow gabel's pattern:
 ### Distribution
 
 1. **Direct download**: Releases on GitHub
-2. **Homebrew**: `brew install robert-claypool/tap/agenta`
-3. **Go install**: `go install github.com/robert-claypool/agenta@latest`
+2. **Homebrew**: `brew install robert-claypool/tap/agenter`
+3. **Go install**: `go install github.com/robert-claypool/agenter@latest`
 
 ## Implementation Steps
 
 1. **Repository preparation**
-   - Rename prompt-engineering → agenta
+   - Rename prompt-engineering → agenter
    - Restructure for Go project
    - Keep existing scripts in `legacy/`
 
@@ -149,7 +149,7 @@ Follow gabel's pattern:
 ## Next Steps
 
 1. Validate plan with stakeholders
-2. Create agenta repository
+2. Create agenter repository
 3. Scaffold Go CLI structure
 4. Implement `check` command first
 5. Iterate based on user feedback
