@@ -81,6 +81,11 @@ main() {
         echo "- Any changes you make here will immediately apply"
         echo "- Use 'git pull' to get updates from others"
         echo "- Use 'git push' to share your improvements"
+        echo
+        echo "For multi-agent workflow:"
+        echo "- Source agent-functions.sh in your shell"
+        echo "- Use create_agent_worktrees() to set up isolated workspaces"
+        echo "- Read agent-functions.sh to understand why isolation matters"
     else
         echo
         echo "✗ Setup cancelled."
