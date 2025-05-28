@@ -22,8 +22,8 @@ git worktree add -b forge-work ../project-forge
 git worktree add -b axiom-work ../project-axiom
 git worktree add -b jarvis-work ../project-jarvis
 
-# Setup agent functions (adds directory guards)
-source ./agent-functions.sh
+# Setup agent sandboxing (adds directory guards)
+source ./agent-sandboxing.sh
 # Or: create_agent_worktrees  # Helper to create all worktrees
 
 # Launch agents (with protection)
