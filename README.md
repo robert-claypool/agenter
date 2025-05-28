@@ -1,6 +1,6 @@
-# Prompt Engineering
+# Agenter
 
-My AI setup for Claude. Includes multi-agent workflow and dev preferences.
+Multi-agent orchestration for Claude. Safe parallel AI development with context isolation.
 
 ## Setup
 
