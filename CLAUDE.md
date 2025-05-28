@@ -220,3 +220,5 @@ Often I use SuperWhisper for voice dictation. When interpreting my prompts, cons
 ---
 
 *These guidelines serve as persistent context for AI assistants working across multiple repositories. It should be referenced when making architectural decisions, writing documentation, or implementing new features.*
+
+- Never add a Claude attribution to git commit descriptions
