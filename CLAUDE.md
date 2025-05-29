@@ -55,6 +55,7 @@ Experienced developers who understand full-stack development but may need:
 - **WHY over WHAT**: Document rationale, decisions, and lessons learned
 - **Plain text markers**: Use `TODO`, `[OK]`, `[FAIL]`, ✓, ✗
 - **Avoid decorative emojis**: No 🚀, 🎉, etc., except in READMEs.
+- **Direct language**: Avoid idioms and casual phrases - favor direct descriptions without filler words
 - **Warn about risks**: Flag performance-critical areas and pitfalls
 - **Tutorial style**: Use narrative approach for complex sections
 - **Self-documenting first**: Add comments only where code alone isn't clear
