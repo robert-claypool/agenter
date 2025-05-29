@@ -22,8 +22,8 @@ git worktree add -b forge-work ../project-forge
 git worktree add -b axiom-work ../project-axiom
 git worktree add -b jarvis-work ../project-jarvis
 
-# Setup agent sandboxing (adds directory guards)
-source ./agent-sandboxing.sh
+# Setup agenter (adds directory guards)
+source ./agenter.sh
 # Or: create_agent_worktrees  # Helper to create all worktrees
 
 # Launch agents (with protection)
@@ -35,3 +35,7 @@ cd ../project-jarvis && jarvis  # Only works in *-jarvis/ directories
 ## Why Worktrees?
 
 Claude Code creates `.claude/` in your working directory to store conversation history. Without isolation, agents share context and become confused. Git worktrees + directory guards ensure each agent maintains its own mental model.
+
+## How to Use
+
+See our guide [WORKFLOW.md](WORKFLOW.md) for orchestrating agents.

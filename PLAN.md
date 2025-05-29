@@ -31,6 +31,22 @@ When running multiple Claude Code instances, they share `.claude/` directories c
 - Health monitoring
 - Integration with task management (GitHub Issues)
 
+## Why Go CLI Instead of Bash Scripts
+
+The current bash implementation has environment and sourcing issues that make global installation unreliable. A Go CLI provides:
+- Single binary distribution
+- No environment/PATH issues  
+- Consistent behavior across systems
+- Better error handling and user feedback
+- Foundation for future features
+
+## Required Worktree Commands
+
+The CLI must support these git worktree workflows:
+- `agenter worktree make <topic>` - Create topic branch from agent's base
+- `agenter worktree push` - Push current topic, display PR URL
+- `agenter worktree next [topic]` - Return to base, optionally start new topic
+
 ## Technical Design
 
 ### CLI Structure (using Cobra)
@@ -40,6 +56,12 @@ agenter
 ├── check         # Validate prerequisites
 ├── setup <repo>  # Create worktrees for a repository
 ├── launch <agent> # Launch agent with sandboxing
+├── worktree      # Git worktree management
+│   ├── make <topic>  # Create topic branch
+│   ├── push          # Push topic, get PR URL
+│   ├── next [topic]  # Return to base, start new topic
+│   ├── list          # List agent worktrees
+│   └── create        # Create agent worktrees
 ├── list          # Show configured projects
 ├── status        # Health check for all agents
 └── version       # Version info
@@ -148,9 +170,10 @@ Follow gabel's pattern:
 
 ## Next Steps
 
-1. Validate plan with stakeholders
-2. Create agenter repository
-3. Scaffold Go CLI structure
-4. Implement `check` command first
-5. Iterate based on user feedback
+1. Initialize Go module in existing repository
+2. Set up Cobra CLI structure
+3. Implement `check` command first (validates prerequisites)
+4. Port worktree commands from bash
+5. Create brew tap for distribution
+6. Update bootstrap.sh to build/install Go binary
 

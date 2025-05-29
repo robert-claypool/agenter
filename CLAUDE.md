@@ -194,6 +194,17 @@ All configurations version-controlled in public GitHub repositories:
 - General dotfiles: `dotfiles` repo
 - Neovim configurations: `nvim` repo
 - Prompt engineering artifacts: `prompt-engineering` repo
+- Agenter: `agenter` repo
+
+### Agenter Commands
+```bash
+source ~/git/agenter/agenter.sh
+worktree_make_topic <name>     # Create topic branch
+worktree_push_topic            # Push branch, get PR URL
+worktree_next_topic [name]     # Return to base, start new topic
+create_agent_worktrees         # Setup forge/axiom/jarvis worktrees
+list_agent_worktrees           # List agent worktrees
+```
 
 ### Workflow Philosophy
 - **Fully keyboard-driven**: Minimal mouse/trackpad use

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Test script for agent-sandboxing.sh
+# Test script for agenter.sh
 # 
 # TEMPORARY: These bash scripts are prototypes. The production version
 # will be a Go CLI with proper tests and type safety. Until then, this
@@ -8,7 +8,7 @@
 
 set -e  # Exit on error
 
-echo "=== Testing Agent Sandboxing Script ==="
+echo "=== Testing Agenter Script ==="
 echo
 
 # Colors for output
@@ -33,7 +33,7 @@ fail() {
 
 # Store the script location
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-SCRIPT_PATH="$SCRIPT_DIR/agent-sandboxing.sh"
+SCRIPT_PATH="$SCRIPT_DIR/agenter.sh"
 
 # Source the script
 source "$SCRIPT_PATH"

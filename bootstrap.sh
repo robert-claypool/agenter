@@ -83,9 +83,9 @@ main() {
         echo "- Use 'git push' to share your improvements"
         echo
         echo "For multi-agent workflow:"
-        echo "- Source agent-sandboxing.sh in your shell"
+        echo "- Source agenter.sh in your shell"
         echo "- Use create_agent_worktrees() to set up isolated workspaces"
-        echo "- Read agent-sandboxing.sh to understand why isolation matters"
+        echo "- Read agenter.sh to understand why isolation matters"
     else
         echo
         echo "✗ Setup cancelled."
