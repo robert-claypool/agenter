@@ -10,7 +10,7 @@ import (
 
 // runCheckImpl implements the check command
 func runCheckImpl() error {
-	PrintHeader("Checking Requirements")
+	PrintHeader("Checking Tools")
 
 	// Check Claude Code
 	PrintStep(1, 4, "Checking Claude Code installation...")
@@ -46,7 +46,7 @@ func runCheckImpl() error {
 	}
 
 	fmt.Println()
-	PrintSuccess("All requirements satisfied!")
+	PrintSuccess("All checks passed!")
 	return nil
 }
 
@@ -58,7 +58,7 @@ func runInitImpl() error {
 	// Run checks first
 	if err := runCheckImpl(); err != nil {
 		fmt.Println()
-		PrintError("Requirements check failed. Please install missing tools and try again.")
+		PrintError("Some tools missing. Please install them and try again.")
 		return err
 	}
 
@@ -105,7 +105,7 @@ func runSetupImpl(repoPath string) error {
 
 	absPath, err := filepath.Abs(repoPath)
 	if err != nil {
-		return fmt.Errorf("invalid path: %v", err)
+		return fmt.Errorf("bad path: %v", err)
 	}
 
 	// Check if it's a git repository
@@ -136,7 +136,7 @@ func runSetupImpl(repoPath string) error {
 		// Create worktree
 		cmd := exec.Command("git", "-C", absPath, "worktree", "add", "-b", branchName, worktreePath)
 		if output, err := cmd.CombinedOutput(); err != nil {
-			PrintError("Failed to create worktree: %s", string(output))
+			PrintError("Could not create worktree: %s", string(output))
 			return err
 		}
 
@@ -154,7 +154,7 @@ func runSetupImpl(repoPath string) error {
 	return nil
 }
 
-// runLaunchImpl implements the launch command
+// runLaunchImpl runs the launch command
 func runLaunchImpl(agent string) error {
 	// Validate agent name
 	if err := IsKnownAgentName(agent); err != nil {

@@ -47,7 +47,7 @@ func runWorktreeMakeImpl(topic string) error {
 	// Get current branch
 	currentBranch, err := getCurrentBranch()
 	if err != nil {
-		return fmt.Errorf("failed to get current branch: %v", err)
+		return fmt.Errorf("could not get current branch: %v", err)
 	}
 
 	// Check if we're on the worktree branch
@@ -61,7 +61,7 @@ func runWorktreeMakeImpl(topic string) error {
 	branchName := fmt.Sprintf("%s-%s", worktreeBranch, topic)
 	cmd := exec.Command("git", "checkout", "-b", branchName)
 	if output, err := cmd.CombinedOutput(); err != nil {
-		return fmt.Errorf("failed to create topic branch: %s", string(output))
+		return fmt.Errorf("could not create topic branch: %s", string(output))
 	}
 
 	PrintSuccess("Created topic branch: %s", branchName)
@@ -74,7 +74,7 @@ func runWorktreePushImpl() error {
 	// Get current branch
 	currentBranch, err := getCurrentBranch()
 	if err != nil {
-		return fmt.Errorf("failed to get current branch: %v", err)
+		return fmt.Errorf("could not get current branch: %v", err)
 	}
 
 	// Check if it's a worktree branch
@@ -89,7 +89,7 @@ func runWorktreePushImpl() error {
 	cmd := exec.Command("git", "push", "-u", "origin", currentBranch)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
-		return fmt.Errorf("failed to push: %s", string(output))
+		return fmt.Errorf("could not push: %s", string(output))
 	}
 
 	// Get the remote URL
@@ -131,7 +131,7 @@ func runWorktreeNextImpl(newTopic string) error {
 	// Get current branch
 	currentBranch, err := getCurrentBranch()
 	if err != nil {
-		return fmt.Errorf("failed to get current branch: %v", err)
+		return fmt.Errorf("could not get current branch: %v", err)
 	}
 
 	// If on worktree branch and new topic provided, just create it
@@ -143,19 +143,19 @@ func runWorktreeNextImpl(newTopic string) error {
 	cmd := exec.Command("git", "status", "--porcelain")
 	output, err := cmd.Output()
 	if err != nil {
-		return fmt.Errorf("failed to check git status: %v", err)
+		return fmt.Errorf("could not check git status: %v", err)
 	}
 
 	if len(output) > 0 {
 		PrintWarning("You have uncommitted changes")
 		PrintInfo("Please commit or stash changes before switching branches")
-		return fmt.Errorf("uncommitted changes")
+		return fmt.Errorf("unsaved changes")
 	}
 
 	// Return to worktree branch
 	cmd = exec.Command("git", "checkout", worktreeBranch)
 	if output, err := cmd.CombinedOutput(); err != nil {
-		return fmt.Errorf("failed to checkout base branch: %s", string(output))
+		return fmt.Errorf("could not switch to base branch: %s", string(output))
 	}
 
 	PrintSuccess("Returned to base branch: %s", worktreeBranch)
@@ -164,7 +164,7 @@ func runWorktreeNextImpl(newTopic string) error {
 	PrintInfo("Updating from main...")
 	cmd = exec.Command("git", "pull", "origin", "main")
 	if output, err := cmd.CombinedOutput(); err != nil {
-		PrintWarning("Failed to pull from main: %s", string(output))
+		PrintWarning("Could not pull from main: %s", string(output))
 	}
 
 	// Create new topic if provided
@@ -182,7 +182,7 @@ func runWorktreeListImpl() error {
 	cmd := exec.Command("git", "worktree", "list")
 	output, err := cmd.Output()
 	if err != nil {
-		return fmt.Errorf("failed to list worktrees: %v", err)
+		return fmt.Errorf("could not list worktrees: %v", err)
 	}
 
 	PrintHeader("Agent Worktrees")
@@ -218,7 +218,7 @@ func runWorktreeListImpl() error {
 func runWorktreeCreateImpl() error {
 	cwd, err := os.Getwd()
 	if err != nil {
-		return fmt.Errorf("failed to get current directory: %v", err)
+		return fmt.Errorf("could not get current directory: %v", err)
 	}
 
 	if !HasGitRepository(cwd) {

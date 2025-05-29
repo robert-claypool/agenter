@@ -8,9 +8,9 @@ import (
 	"strings"
 )
 
-// Verifies GitHub CLI exists and has valid authentication token.
+// Checks if GitHub CLI is installed and logged in.
 // Returns error if gh is missing or user hasn't run 'gh auth login'.
-// We need authenticated gh for creating PRs and managing issues.
+// We need gh for creating PRs and issues.
 func IsGitHubCLIAuthenticated() error {
 	cmd := exec.Command("gh", "auth", "status")
 	output, err := cmd.CombinedOutput()
@@ -51,9 +51,8 @@ func IsClaudeInstalled() error {
 	return nil
 }
 
-// Verifies git is available. Worktrees require Git 2.5+ (2015),
-// but checking version compatibility adds complexity for little benefit
-// since Git 2.5 is 9 years old.
+// Checks if git is installed. Worktrees need Git 2.5+ (2015),
+// but we don't check version since Git 2.5 is 9 years old.
 func IsGitInstalled() error {
 	cmd := exec.Command("git", "--version")
 	output, err := cmd.Output()
@@ -65,8 +64,8 @@ func IsGitInstalled() error {
 	return nil
 }
 
-// Detects if path contains a git repository by looking for .git.
-// In worktrees, .git is a file pointing to the main repo's git directory.
+// Checks if path has a git repository by looking for .git.
+// In worktrees, .git is a file pointing to the main repo.
 func HasGitRepository(path string) bool {
 	if path == "" {
 		return false
@@ -79,9 +78,8 @@ func HasGitRepository(path string) bool {
 	return info.IsDir() || info.Mode().IsRegular()
 }
 
-// Ensures agent name is one of our three known agents.
-// We use fixed agent names to maintain consistent workspace isolation
-// and prevent accidental context mixing.
+// Checks if agent name is valid (forge, axiom, or jarvis).
+// We use fixed names to keep workspaces separate.
 func IsKnownAgentName(agent string) error {
 	validAgents := []string{"forge", "axiom", "jarvis"}
 	for _, valid := range validAgents {
@@ -92,9 +90,9 @@ func IsKnownAgentName(agent string) error {
 	return fmt.Errorf("unknown agent name: %s (must be forge, axiom, or jarvis)", agent)
 }
 
-// Prevents agents from running in wrong directories by checking directory suffix.
-// Critical for maintaining conversation isolation - if forge runs in axiom's
-// directory, it inherits axiom's conversation history and context.
+// Checks if agent is in correct directory by checking suffix.
+// Keeps conversations separate - if forge runs in axiom's
+// directory, it sees axiom's conversation history.
 func IsInAgentWorkspace(agent string) error {
 	cwd, err := os.Getwd()
 	if err != nil {

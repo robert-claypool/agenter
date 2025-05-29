@@ -21,15 +21,15 @@ var rootCmd = &cobra.Command{
 
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Interactive first-time setup",
-	Long:  "Initialize agenter by checking prerequisites and setting up Claude configuration.",
+	Short: "First-time setup",
+	Long:  "Set up agenter by checking requirements and configuring Claude.",
 	Run:   runInit,
 }
 
 var checkCmd = &cobra.Command{
 	Use:   "check",
-	Short: "Validate prerequisites",
-	Long:  "Check that all required tools are installed and configured correctly.",
+	Short: "Check requirements",
+	Long:  "Check that all required tools are installed.",
 	Run:   runCheck,
 }
 
@@ -44,7 +44,7 @@ var setupCmd = &cobra.Command{
 var launchCmd = &cobra.Command{
 	Use:   "launch <agent>",
 	Short: "Launch agent with sandboxing",
-	Long:  "Launch Claude Code as a specific agent (forge, axiom, or jarvis) with environment isolation.",
+	Long:  "Launch Claude Code as a specific agent with sandbox.",
 	Args:  cobra.ExactArgs(1),
 	Run:   runLaunch,
 }

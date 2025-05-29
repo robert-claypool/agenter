@@ -60,6 +60,18 @@ Experienced developers who understand full-stack development but may need:
 - **Tutorial style**: Use narrative approach for complex sections
 - **Self-documenting first**: Add comments only where code alone isn't clear
 
+### Simple Language Preference
+Choose simple words when they clearly convey meaning:
+- check instead of validate
+- run instead of execute  
+- do instead of implement
+- setup instead of initialize
+- tools/needs instead of prerequisites
+- "could not" instead of "failed to"
+- saved instead of committed (for uncommitted changes)
+
+This applies to function names, variables, comments, and error messages. Complexity should come from solving hard problems, not from the words we use to describe solutions.
+
 ## Development Principles
 
 ### Developer Experience as Foundation
