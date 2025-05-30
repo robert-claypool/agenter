@@ -16,13 +16,23 @@ func TestAgenterE2E(t *testing.T) {
 		t.Skip("Skipping e2e test in CI")
 	}
 
-	// Create temp directory
+	// Create temp directory - clean up any existing one first
 	tempDir := filepath.Join(".", "temp")
+	
+	// Remove any existing temp directory from previous runs
+	os.RemoveAll(tempDir)
+	
 	err := os.MkdirAll(tempDir, 0755)
 	if err != nil {
 		t.Fatalf("Could not create temp dir: %v", err)
 	}
-	defer os.RemoveAll(tempDir)
+	
+	// Ensure cleanup happens even if test fails
+	defer func() {
+		if err := os.RemoveAll(tempDir); err != nil {
+			t.Logf("Warning: Could not remove temp directory: %v", err)
+		}
+	}()
 
 	// Use a small, popular repository - "hello" by GitHub (simple example repo)
 	repoURL := "https://github.com/octocat/Hello-World.git"
@@ -202,12 +212,18 @@ func TestAgenterE2E(t *testing.T) {
 		}
 		defer os.Chdir(originalDir)
 
-		output, err = runAgenter("launch", "forge")
-		// This will fail if Claude is not installed, which is expected
-		if err != nil && strings.Contains(output, "claude not found") {
-			t.Log("Launch correctly detected missing Claude")
-		} else if err != nil {
-			t.Logf("Launch failed (expected if Claude not installed): %s", output)
+		// Check if Claude is installed to avoid hanging the test
+		checkOutput, _ := runAgenter("check")
+		if strings.Contains(checkOutput, "Claude Code is installed") {
+			t.Log("Claude is installed - skipping actual launch to avoid hanging test")
+		} else {
+			output, err = runAgenter("launch", "forge")
+			// This will fail if Claude is not installed, which is expected
+			if err != nil && strings.Contains(output, "claude not found") {
+				t.Log("Launch correctly detected missing Claude")
+			} else if err != nil {
+				t.Logf("Launch failed (expected if Claude not installed): %s", output)
+			}
 		}
 	})
 
