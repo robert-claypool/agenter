@@ -60,6 +60,18 @@ Experienced developers who understand full-stack development but may need:
 - **Tutorial style**: Use narrative approach for complex sections
 - **Self-documenting first**: Add comments only where code alone isn't clear
 
+### Simple Language Preference
+Choose simple words when they clearly convey meaning:
+- check instead of validate
+- run instead of execute  
+- do instead of implement
+- setup instead of initialize
+- tools/needs instead of prerequisites
+- "could not" instead of "failed to"
+- saved instead of committed (for uncommitted changes)
+
+This applies to function names, variables, comments, and error messages. Complexity should come from solving hard problems, not from the words we use to describe solutions.
+
 ## Development Principles
 
 ### Developer Experience as Foundation
@@ -120,7 +132,7 @@ cd ../project-jarvis && jarvis
 
 1. **Fail Fast** - No patches or fallbacks, let errors kill processes
 2. **Extensive Debug Logging** - Include context for troubleshooting
-3. **Fast, Comprehensive Testing** - 100% coverage, millisecond execution, mock by default
+3. **Fast, Comprehensive Testing** - 90% coverage when you can, millisecond execution, mock by default
 4. **Small, Composable Components** - Focused services only
 
 ## AI Integration Strategy
@@ -229,8 +241,23 @@ Often I use SuperWhisper for voice dictation. When interpreting my prompts, cons
 - Document rationale and trade-offs for each tool choice
 - Plain English, no unnecessary jargon
 
+### Git Commit Guidelines
+
+**Commit Messages** (the one-liner):
+- Keep it short and scannable - people are browsing through lists
+- Use common abbreviations (DB, MS SQL, config, docs)
+- Focus on WHAT changed, not details
+- Assume readers might just be glancing
+
+**Commit Descriptions** (the body):
+- Now you have a technical audience who cares about details
+- Use acronyms and technical terms freely
+- Be terse but clear - no fluff
+- These readers have self-selected to dig deeper
+- Include the WHY and important technical details
+
+Never add Claude attribution to git commits.
+
 ---
 
 *These guidelines serve as persistent context for AI assistants working across multiple repositories. It should be referenced when making architectural decisions, writing documentation, or implementing new features.*
-
-- Never add a Claude attribution to git commit descriptions
