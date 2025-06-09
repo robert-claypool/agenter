@@ -23,7 +23,7 @@ I focus on:
 
 ### AI Collaboration
 
-My Role (the human role): To orchestrate AI assistants throughout this project's SDLC. I focus on understanding what users need, then guide AI tools through research, design, implementation, testing, and deployment. My job is to learn what stakeholders want, imagine how technologies can serve them, provide direction with good taste, and make decisions while pairing with assistants to iterate on implementation details. I am ultimately responsible for artifacts we deliver.
+My Role (the human role): To orchestrate AI assistants throughout this project's SDLC. I focus on understanding what users need, then guide AI tools through research, design, implementation, testing, and deployment. My job is to learn what stakeholders want, imagine how technologies can serve them, provide direction with good taste, and make decisions while pairing with assistants to iterate on implementation details. I am ultimately responsible for artifacts we deliver. More fundamentally, I'm a curator of context. With AI able to absorb millions of tokens and perform all traditional software roles (engineer, tester, PM, analyst), my job is to maintain the coherent narrative that lets AI understand not just what to build but why. This isn't about better documentation at the margins - it's about AI instantly absorbing years of accumulated knowledge and mental models that no human colleague ever could.
 
 The AI Role (Claude, Jarvis, Axiom, Forge): You execute detailed implementation work based on my direction. You sense when to remind me about untested components or other issues - at key checkpoints (before releases, milestones, declaring "done") but not during deep troubleshooting. Track what we've tried and learned, freeing me to drift safely into deep work. Surface relevant details from our work history when they'd be helpful.
 
@@ -39,6 +39,8 @@ My documentation follows a consistent pattern:
 3. **Plain language over jargon** - Clarity beats cleverness
 4. **Pseudocode examples** - Show intent before implementation
 5. **Specific requirements** - No ambiguity in expectations
+6. **Show don't tell** - Trust readers to draw conclusions, don't prescribe what to think
+7. **Narrative over bullets** - Context and reasoning matter more than lists of features
 
 ### Target Audience
 Experienced developers who understand full-stack development but may need:
@@ -107,7 +109,7 @@ This applies to function names, variables, comments, and error messages. Complex
 
 #### Orchestration Philosophy
 - **Human as conductor**: Guide strategy while agents execute in parallel
-- **Minimize wait time**: Keep 3 agents active to ensure continuous engagement
+- **Minimize wait time**: Keep 3 agents active to ensure continuous engagement (Note: Multiple agents address response latency, not AI role limitations. As response times improve, this workflow will evolve.)
 - **Small tasks (5-15 min)**: Enable rapid context switching and review
 - **Asynchronous collaboration**: Agents communicate via GitHub Issues/PRs
 
@@ -177,36 +179,19 @@ cd ../project-jarvis && jarvis
 ## Development Environment & Tooling
 
 ### System Configuration
-- **Hardware**: MacBook Pro M2 Max
 - **OS**: macOS
-- **Terminal**: Warp or Ghostty
-- **Shell**: Zsh
-- **Editor**: Neovim v0.11.1+ (primary IDE)
+- **Editor**: Neovim (primary IDE)
 - **Version Control**: Jujutsu (`jj`) or Git
-- **Window Management**: Hammerspoon (fullscreen apps across desktops)
 
 ### Package Management & Runtimes
-- **System packages**: Homebrew
-- **Node.js management**: bun, nvm, volta (primary runtime for daily work)
-- **Python**: Occasional use
-- **Go**: Occasional use
-- **.NET**: Occasional use
+- **Primary**: Node.js (via bun, nvm, volta)
+- **Also use**: Python, Go, .NET
 
 ### Development Tools
-- **Database**: PostgreSQL with psql
-- **Infrastructure**: Terraform CLI
-- **Cloud**: AWS CLI
-- **Containers**: Docker and Docker Compose
-- **Secrets**: op (1Password CLI)
-- **Search/Filter**: fzf (want to learn/integrate)
-- **GitHub**: gh (GitHub CLI) installed and configured
+PostgreSQL, Terraform, AWS CLI, Docker/Compose, 1Password CLI (op), GitHub CLI (gh), fzf
 
 ### Configuration Management
-All configurations version-controlled in public GitHub repositories:
-- General dotfiles: `dotfiles` repo
-- Neovim configurations: `nvim` repo
-- Prompt engineering artifacts: `prompt-engineering` repo
-- Agenter: `agenter` repo
+All configurations in public GitHub repos: `dotfiles`, `nvim`, `prompt-engineering`, `agenter`
 
 ### Agenter Commands
 ```bash
@@ -225,11 +210,6 @@ list_agent_worktrees           # List agent worktrees
 - **No debugging in Vim**: AI-assisted debugging workflow instead
 
 ### AI Tool Integration
-
-#### LLM Preferences for Autocompletion
-- **Gemini Flash 2.5**: Excellent and fast
-- **Claude Sonnet 4**: Slower but genius-level intelligence and writing
-- **OpenRouter**: Available for early model access
 
 #### Dictation Notice
 Often I use SuperWhisper for voice dictation. When interpreting my prompts, consider phonetic alternatives if something seems unclear or out of context.
@@ -257,6 +237,8 @@ Often I use SuperWhisper for voice dictation. When interpreting my prompts, cons
 - Include the WHY and important technical details
 
 Never add Claude attribution to git commits.
+
+Use only straight quotes (" and '), straight apostrophes ('), and the plain hyphen (-). Do not output curly quotes, curly apostrophes, en dashes, or em dashes unless you are directly quoting text that already contains them or have another good reason.
 
 ---
 
